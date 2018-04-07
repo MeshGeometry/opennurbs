@@ -13,9 +13,12 @@ set(CMAKE_DEBUG_POSTFIX "_d")
 # Include Urho3D Cmake common module
 #include (Urho3D-CMake-common)
 
+add_subdirectory("./freetype263")
+
 #define includes
 include_directories("./")
 include_directories("./zlib")
+include_directories("./freetype263/include")
 
 #create target
 set (TARGET_NAME OpenNurbsLib)
@@ -34,6 +37,7 @@ list(APPEND SOURCE_FILES ${OPENNURBS_SRC} ${ZLIB_SRC})
 # Setup target with resource copying
 #setup_library ()
 add_library(OpenNurbsLib ${SOURCE_FILES})
+target_link_libraries(OpenNurbsLib FreeType)
 
 if(MSVC)
 	#remove the win32 define
